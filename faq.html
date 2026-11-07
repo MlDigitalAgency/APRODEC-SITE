@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B1F3A">
+  <meta name="description" content="Adhésion, cotisation, activités et vie privée, retrouvez les réponses aux questions les plus posées sur APRODEC.">
+  <title>FAQ | APRODEC</title>
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- La police Merriweather Sans est hébergée dans /fonts (voir css/style.css, section 01). -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Icônes de la page : dessinées en traits, intégrées ici, aucune requête vers un serveur extérieur. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="fq-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="fq-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="fq-sprout" viewBox="0 0 24 24"><path d="M7 20h10M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></symbol>
+    <symbol id="fq-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+
+  <!-- =====================================================
+       EN-TÊTE
+       ===================================================== -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="APRODEC, retour à l'accueil">
+        <img class="brand-mark" src="img/logoaprodec.png" alt="Logo de l'association APRODEC" width="64" height="64">
+        <span class="brand-name">APRODEC</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Ouvrir le menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="activites.html">Activités</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html" aria-current="page">FAQ</a></li>
+          <li><a class="nav-cta" href="s-impliquer.html">S'impliquer</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="contenu">
+
+    <!-- =====================================================
+         BANDEAU DE PAGE
+         Image de fond : img/faq-hero.webp (voir la section 13 de css/style.css)
+         ===================================================== -->
+    <section class="fq-hero" aria-labelledby="page-title">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <ol>
+            <li><a href="index.html">Accueil</a></li>
+            <li aria-current="page">FAQ</li>
+          </ol>
+        </nav>
+        <h1 id="page-title">Questions fréquentes</h1>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         QUESTIONS
+         Menu des thèmes à gauche, questions à droite.
+         Une seule question reste ouverte à la fois (attribut name="faq").
+         ===================================================== -->
+    <section class="section section-soft" aria-label="Questions fréquentes">
+      <div class="container fq-layout">
+
+        <!-- Menu des thèmes -->
+        <nav class="fq-nav" aria-label="Thèmes de la FAQ">
+          <ul>
+            <li><a href="#fq-adhesion"><svg class="fq-i fq-nav-ico" aria-hidden="true" focusable="false"><use href="#fq-users"/></svg><span>Adhésion</span><small>4</small></a></li>
+            <li><a href="#fq-cotisation"><svg class="fq-i fq-nav-ico" aria-hidden="true" focusable="false"><use href="#fq-wallet"/></svg><span>Cotisation</span><small>2</small></a></li>
+            <li><a href="#fq-activites"><svg class="fq-i fq-nav-ico" aria-hidden="true" focusable="false"><use href="#fq-sprout"/></svg><span>Activités</span><small>2</small></a></li>
+            <li><a href="#fq-vie-privee"><svg class="fq-i fq-nav-ico" aria-hidden="true" focusable="false"><use href="#fq-lock"/></svg><span>Vie privée</span><small>2</small></a></li>
+          </ul>
+        </nav>
+
+        <div class="fq-content">
+
+          <!-- Thème 1 : Adhésion -->
+          <section class="fq-group reveal" id="fq-adhesion" aria-labelledby="fq-adhesion-t">
+            <header class="fq-head">
+              <span class="fq-badge"><svg class="fq-i" aria-hidden="true" focusable="false"><use href="#fq-users"/></svg></span>
+              <div>
+                <h2 id="fq-adhesion-t">Adhésion</h2>
+                <p class="fq-sub">Qui peut nous rejoindre, et comment.</p>
+              </div>
+              <span class="fq-count">4 questions</span>
+            </header>
+
+            <div class="fq-card">
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Qui peut devenir membre&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Toute personne de bonne moralité, sans distinction de sexe, de religion ni de culture, qui s'engage à respecter les statuts et le règlement intérieur.</p></div>
+              </details>
+
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Faut-il habiter à Gbékong pour adhérer&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Non. Des membres vivent à Bertoua, dans d'autres villes ou à l'étranger. Ils suivent la vie de l'association par le site et par nos messages.</p></div>
+              </details>
+
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Comment adhérer&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Remplissez le formulaire de la page <a class="link" href="s-impliquer.html">S'impliquer</a> en choisissant «&nbsp;Adhérer&nbsp;». Nous vous répondons pour la suite. <span class="todo">[Procédure exacte à confirmer.]</span></p></div>
+              </details>
+
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">L'association a-t-elle une appartenance politique ou religieuse&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Non. APRODEC est une association apolitique et à but non lucratif, comme le prévoient ses statuts.</p></div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Thème 2 : Cotisation -->
+          <section class="fq-group reveal" id="fq-cotisation" aria-labelledby="fq-cotisation-t">
+            <header class="fq-head">
+              <span class="fq-badge"><svg class="fq-i" aria-hidden="true" focusable="false"><use href="#fq-wallet"/></svg></span>
+              <div>
+                <h2 id="fq-cotisation-t">Cotisation</h2>
+                <p class="fq-sub">La participation financière et les modalités de paiement.</p>
+              </div>
+              <span class="fq-count">2 questions</span>
+            </header>
+
+            <div class="fq-card">
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Y a-t-il une cotisation&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p><span class="todo">[À confirmer : montant et périodicité de la cotisation.]</span></p></div>
+              </details>
+
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Comment la payer&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Les modalités (MTN Mobile Money, Orange Money, virement ou remise en main propre) sont indiquées sur la page <a class="link" href="s-impliquer.html">S'impliquer</a>. <span class="todo">[À confirmer.]</span> Le site ne collecte aucune donnée bancaire.</p></div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Thème 3 : Activités -->
+          <section class="fq-group reveal" id="fq-activites" aria-labelledby="fq-activites-t">
+            <header class="fq-head">
+              <span class="fq-badge"><svg class="fq-i" aria-hidden="true" focusable="false"><use href="#fq-sprout"/></svg></span>
+              <div>
+                <h2 id="fq-activites-t">Activités</h2>
+                <p class="fq-sub">Ce que nous faisons et comment proposer une idée.</p>
+              </div>
+              <span class="fq-count">2 questions</span>
+            </header>
+
+            <div class="fq-card">
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Quelles actions menez-vous&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Nous rénovons des habitations, faisons des dons à des familles, formons des jeunes aux travaux champêtres et organisons des rencontres entre membres. Voir la page <a class="link" href="activites.html">Activités</a>.</p></div>
+              </details>
+
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Comment proposer un micro-projet&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Écrivez-nous avec le formulaire de la page <a class="link" href="s-impliquer.html">S'impliquer</a> en choisissant «&nbsp;Soutenir un micro-projet&nbsp;», avec une courte description de votre idée.</p></div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Thème 4 : Vie privée -->
+          <section class="fq-group reveal" id="fq-vie-privee" aria-labelledby="fq-vie-privee-t">
+            <header class="fq-head">
+              <span class="fq-badge"><svg class="fq-i" aria-hidden="true" focusable="false"><use href="#fq-lock"/></svg></span>
+              <div>
+                <h2 id="fq-vie-privee-t">Vie privée</h2>
+                <p class="fq-sub">Vos données personnelles et vos droits.</p>
+              </div>
+              <span class="fq-count">2 questions</span>
+            </header>
+
+            <div class="fq-card">
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Que faites-vous de mes données&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Nous ne gardons que votre nom, votre contact et votre message, uniquement pour vous répondre. Les détails sont dans la page <a class="link" href="confidentialite.html">Confidentialité</a>.</p></div>
+              </details>
+
+              <details class="fq-item" name="faq">
+                <summary class="fq-sum"><h3 class="fq-q">Comment faire effacer mes données&nbsp;?</h3><span class="fq-ico" aria-hidden="true"></span></summary>
+                <div class="fq-panel"><p>Écrivez-nous à <a class="link" href="mailto:mldigitalagency237@gmail.com">mldigitalagency237@gmail.com</a> ou depuis la page <a class="link" href="contact.html">Contact</a>. Nous supprimons vos données sur simple demande.</p></div>
+              </details>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         APPEL À AGIR
+         ===================================================== -->
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="container cta-inner reveal">
+        <div>
+          <h2 id="cta-title">Votre question n'est pas là&nbsp;?</h2>
+          <p>Écrivez-nous, nous répondons volontiers.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="contact.html">Nous écrire</a>
+          <a class="btn btn-ghost" href="s-impliquer.html">S'impliquer</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       PIED DE PAGE
+       ===================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="APRODEC, retour à l'accueil">
+          <img class="brand-mark" src="img/logoaprodec.png" alt="" width="56" height="56">
+          <span class="brand-name">APRODEC</span>
+        </a>
+        <p>Association pour la Promotion du Développement Communautaire. Siège social : Gbékong (Bertoua 2e).</p>
+      </div>
+
+      <nav aria-label="Pages du site">
+        <h2 class="footer-title">Le site</h2>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="activites.html">Activités</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="s-impliquer.html">S'impliquer</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Informations légales">
+        <h2 class="footer-title">Informations légales</h2>
+        <ul>
+          <li><a href="cookies.html">Cookies</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><button type="button" class="linklike" id="manageCookies">Gérer mes cookies</button></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer-title">Nous joindre</h2>
+        <ul class="contact-list">
+          <li>Gbékong, Bertoua 2e, Cameroun</li>
+          <li><a href="mailto:mldigitalagency237@gmail.com">mldigitalagency237@gmail.com</a></li>
+          <li><a href="tel:+237695184278">+237 695 184 278</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span id="year">2026</span> APRODEC. Tous droits réservés.</p>
+        <p>Site réalisé par <a href="#" rel="noopener">ML Digital Agency 237</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- =====================================================
+       ÉLÉMENTS FLOTTANTS
+       ===================================================== -->
+  <button class="to-top" id="toTop" type="button" aria-label="Retour en haut de la page" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText" hidden>
+    <h2 id="cookieTitle">Vos choix sur les cookies</h2>
+    <p id="cookieText">Ce site n'utilise que les cookies nécessaires à son fonctionnement. Avec votre accord, nous pourrons aussi mesurer la fréquentation, sans vous identifier. <a href="cookies.html">En savoir plus</a></p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-secondary" data-cookie="refused">Refuser</button>
+      <button type="button" class="btn btn-secondary" data-cookie="accepted">Accepter</button>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       SCRIPTS
+       ===================================================== -->
+  <script src="js/menu.js" defer></script>
+  <script src="js/reveal.js" defer></script>
+  <script src="js/cookies.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/faq.js" defer></script>
+
+</body>
+</html>

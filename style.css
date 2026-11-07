@@ -1,0 +1,994 @@
+/* =========================================================
+   APRODEC | Feuille de style principale (unique pour tout le site)
+   Palette et typographie : voir PRD sections 4.1 et 4.2
+
+   SOMMAIRE
+   01. Polices
+   02. Variables
+   03. Base : reset, typographie, mise en page, icônes
+   04. Accessibilité
+   05. Composants communs
+       5.1 Liens et boutons
+       5.2 Formulaires
+       5.3 Fil d'Ariane et étiquettes
+       5.4 Cartes d'activités
+       5.5 Bandeau d'appel à agir
+       5.6 Fenêtres modales et indicateur d'envoi
+       5.7 Bannière de cookies et bouton retour en haut
+   06. En-tête et navigation
+   07. Pied de page
+   08. Gabarit des pages intérieures
+   09. Page Accueil
+   10. Page À propos
+   11. Page Activités
+   12. Page Contact
+   13. Page FAQ
+   14. Page S'impliquer
+   15. Pages légales
+   16. Animations
+   17. Mouvement réduit
+   ========================================================= */
+
+
+/* =========================================================
+   01. POLICES
+   Merriweather Sans hébergée dans /fonts (licence SIL OFL 1.1).
+   Aucun appel à Google Fonts : l'adresse IP des visiteurs
+   n'est transmise à personne.
+   ========================================================= */
+@font-face{font-family:"Merriweather Sans";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/merriweather-sans-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Merriweather Sans";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/merriweather-sans-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Merriweather Sans";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/merriweather-sans-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Merriweather Sans";font-style:normal;font-weight:800;font-display:swap;src:url("../fonts/merriweather-sans-latin-800-normal.woff2") format("woff2")}
+
+
+/* =========================================================
+   02. VARIABLES
+   ========================================================= */
+:root{
+  /* Couleurs */
+  --night:#0B1F3A;        /* header, footer, bandeaux */
+  --ink:#111111;          /* texte courant */
+  --red:#D93A45;          /* sous-titres sur fond clair */
+  --red-hover:#C81E2E;    /* boutons et survol sur fond clair */
+  --red-night:#FF6B6B;    /* survol et accents sur bleu nuit */
+  --soft:#F4F1EC;         /* sections alternées */
+  --white:#FFFFFF;
+  --grey:#5A6270;
+  --line:#D8D4CC;
+
+  /* Typographie */
+  --font:"Merriweather Sans",sans-serif;
+
+  /* Dimensions */
+  --header-h:80px;
+  --radius:8px;
+
+  /* Animation */
+  --ease:cubic-bezier(.22,.7,.2,1);
+}
+
+
+/* =========================================================
+   03. BASE
+   ========================================================= */
+
+/* ---------- reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 16px);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font);font-size:16px;line-height:1.65;color:var(--ink);background:var(--white);padding-top:env(safe-area-inset-top,0px)}
+img,svg{max-width:100%}
+a{color:inherit}
+ul{margin:0;padding:0;list-style:none}
+p{margin:0 0 1em}
+
+/* ---------- typographie ---------- */
+h1,h2,h3{font-weight:700;line-height:1.2;margin:0}
+h1{font-size:30px;font-weight:800;letter-spacing:-.01em}
+h2{font-size:24px;color:var(--night)}
+.sub{font-size:18px;color:var(--red);margin-bottom:.35em}
+@media (min-width:768px){
+  body{font-size:17px}
+  h1{font-size:44px}
+  h2{font-size:32px}
+  .sub{font-size:20px}
+}
+
+/* ---------- mise en page ---------- */
+.container{width:min(1160px,100% - 40px);margin-inline:auto}
+.section{padding:64px 0}
+.section-soft{background:var(--soft)}
+@media (min-width:900px){.section{padding:96px 0}}
+
+/* ---------- icônes Font Awesome (SVG intégrés dans les pages) ---------- */
+.icon{display:inline-block;width:1em;height:1em;fill:currentColor;vertical-align:-.125em;flex:none}
+
+
+/* =========================================================
+   04. ACCESSIBILITÉ
+   ========================================================= */
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:4px}
+.site-header :focus-visible,.hero :focus-visible,.stats :focus-visible,.cta-band :focus-visible,.site-footer :focus-visible,.cookie-banner :focus-visible{outline-color:var(--white)}
+
+.skip-link{position:absolute;left:16px;top:-60px;background:var(--white);color:var(--night);padding:10px 16px;border-radius:var(--radius);font-weight:700;z-index:200;transition:top .2s}
+.skip-link:focus{top:12px}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+
+/* =========================================================
+   05. COMPOSANTS COMMUNS
+   ========================================================= */
+
+/* ---------- 5.1 Liens et boutons ---------- */
+.link{font-weight:600;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:5px;text-decoration-thickness:2px;transition:color .2s,text-decoration-color .2s}
+.link:hover{color:var(--red-hover);text-decoration-color:var(--red-hover)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 26px;border-radius:var(--radius);font:600 15px/1.2 var(--font);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s,color .2s,border-color .2s}
+.btn .icon{margin-right:8px;font-size:1.05em}
+.btn-primary{background:var(--red-hover);color:var(--white)}
+.btn-primary:hover{background:#A81726;transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.22)}
+.btn-ghost{border-color:var(--white);color:var(--white);background:transparent}
+.btn-ghost:hover{background:var(--white);color:var(--night)}
+.btn-secondary{border-color:var(--night);color:var(--night);background:transparent}
+.btn-secondary:hover{background:var(--night);color:var(--white)}
+
+.linklike{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:4px}
+
+/* ---------- 5.2 Formulaires ---------- */
+.form{display:grid;gap:20px;max-width:560px}
+.field label{display:block;font-weight:600;margin-bottom:6px}
+.field input[type=text],.field select,.field textarea{width:100%;min-height:48px;padding:10px 14px;border:2px solid #8A93A0;border-radius:var(--radius);font-family:var(--font);font-size:16px;line-height:1.5;background:var(--white);color:var(--ink)}
+.field textarea{resize:vertical}
+.field [aria-invalid="true"]{border-color:var(--red-hover)}
+.field.check{display:grid;grid-template-columns:24px 1fr;gap:4px 12px;align-items:start}
+.field.check input{width:24px;height:24px;margin:2px 0 0;accent-color:var(--night)}
+.field.check label{font-weight:400;margin:0}
+.field.check .field-err{grid-column:2}
+.field-err{color:var(--red-hover);font-size:14px;font-weight:600;margin:4px 0 0}
+.field-err:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden} /* champ piège anti-robot */
+
+.form-status{margin:0;font-weight:600}
+.form-status:empty{display:none}
+.form-status.is-ok,.form-status.is-error{padding:14px 16px;border-radius:6px;font-size:15px;line-height:1.5}
+.form-status.is-ok{color:#1B6B3A;background:#E8F4EC;border-left:4px solid #1B6B3A}
+.form-status.is-error{color:var(--red-hover);background:#FBEAEC;border-left:4px solid var(--red-hover)}
+
+/* ---------- 5.3 Fil d'Ariane et étiquettes ---------- */
+.breadcrumb{margin-bottom:22px;font-size:14px}
+.breadcrumb ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.breadcrumb li+li::before{content:"/";margin-right:6px;color:#8EA0BC}
+.breadcrumb a{color:#C3CEDF;text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--red-night)}
+.breadcrumb [aria-current]{color:var(--white);font-weight:600}
+
+.tag{display:inline-block;background:var(--night);color:var(--white);font-size:12px;font-weight:600;line-height:1.5;padding:2px 10px;border-radius:99px;margin-right:6px}
+.muted{color:var(--grey);max-width:26em;margin-top:12px}
+.todo,.draft-note{color:var(--grey);font-size:14px}
+.todo{font-style:italic}
+.draft-note{border-left:3px solid var(--red);padding:2px 0 2px 12px;margin-top:20px;max-width:36em}
+.plain,.checklist{list-style:disc;padding-left:22px;margin:0 0 1em}
+.plain li,.checklist li{margin-bottom:6px;max-width:36em}
+.empty-note{background:var(--white);border:2px dashed var(--line);border-radius:12px;padding:20px 22px}
+.empty-note p{margin:0}
+
+/* ---------- 5.4 Cartes d'activités (accueil et page Activités) ---------- */
+.section-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px 24px;margin-bottom:32px}
+.news-grid{display:grid;gap:28px}
+.news{position:relative;display:flex;flex-direction:column;min-width:0;background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.news:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(11,31,58,.14)}
+.news[hidden]{display:none}
+
+/* Le conteneur garde une taille maîtrisée, l'image le remplit sans l'agrandir. */
+.news-media{position:relative;display:block;width:100%;aspect-ratio:16/10;flex:0 0 auto;overflow:hidden;background:var(--soft)}
+.news-media img{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 28%;pointer-events:none;transition:transform .5s var(--ease)}
+.news:hover .news-media img{transform:scale(1.04)}
+
+/* Dégradés affichés tant que la photo n'est pas chargée */
+.media-a{background:linear-gradient(135deg,#0B1F3A 0%,#1F4170 100%)}
+.media-b{background:linear-gradient(135deg,#7A1F2B 0%,#D93A45 100%)}
+.media-c{background:linear-gradient(135deg,#1F4170 0%,#5A6270 100%)}
+.demo{position:absolute;z-index:1;left:12px;top:12px;background:var(--white);color:var(--night);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+
+.news-body{position:relative;z-index:2;min-width:0;padding:22px 22px 26px}
+.news-body p:last-child{margin:0}
+.news-meta{font-size:14px;color:var(--grey);margin-bottom:6px!important}
+.news-title{font-size:19px;margin-bottom:8px;color:var(--night)}
+.news-title a{text-decoration:none;transition:color .2s}
+.news-title a::after{content:"";position:absolute;inset:0} /* toute la carte est cliquable */
+.news-title a:hover{color:var(--red-hover)}
+
+/* Accueil : une grande carte et deux petites */
+@media (min-width:900px){
+  .news-grid:not(.news-grid-3){grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-rows:auto auto;align-items:stretch}
+  .news-grid:not(.news-grid-3) .news-feature{grid-row:1 / span 2}
+  .news-grid:not(.news-grid-3) .news-feature .news-media{aspect-ratio:auto;flex:0 0 320px;height:320px;min-height:0}
+  .news-grid:not(.news-grid-3) .news-feature .news-title{font-size:24px}
+  .news-grid:not(.news-grid-3) .news:not(.news-feature){flex-direction:row;align-items:stretch}
+  .news-grid:not(.news-grid-3) .news:not(.news-feature) .news-media{aspect-ratio:auto;width:38%;height:auto;min-height:0;flex:0 0 38%}
+  .news-grid:not(.news-grid-3) .news:not(.news-feature) .news-body{flex:1;padding:18px}
+}
+
+/* Page Activités : grille régulière, les cartes gardent la même taille même s'il n'en reste qu'une */
+.news-grid.news-grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));grid-template-rows:auto}
+.news-grid-3 .news:not(.news-feature){flex-direction:column}
+.news-grid-3 .news:not(.news-feature) .news-media{width:auto;aspect-ratio:16/10}
+.news-grid-3 .news-media img{object-position:center 30%}
+
+/* ---------- 5.5 Bandeau d'appel à agir ---------- */
+.cta-band{background:var(--night);color:var(--white);padding:64px 0}
+.cta-band h2{color:var(--white)}
+.cta-inner{display:grid;gap:28px;align-items:center}
+.cta-inner p{margin:12px 0 0;max-width:34em;color:#DCE3EE}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px}
+@media (min-width:900px){.cta-inner{grid-template-columns:1.4fr 1fr}.cta-actions{justify-content:flex-end}}
+
+/* ---------- 5.6 Fenêtres modales et indicateur d'envoi ---------- */
+/* Confirmation des formulaires */
+.fd{border:0;border-radius:14px;padding:34px 28px 26px;width:min(92vw,440px);text-align:center;color:var(--ink);box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.fd::backdrop{background:rgba(11,31,58,.72)}
+.fd[open]{animation:fd-in .35s var(--ease)}
+.fd-ico{display:block;width:58px;height:58px;margin:0 auto 14px;color:#1B6B3A}
+.fd.is-error .fd-ico{color:var(--red-hover)}
+.fd.is-info .fd-ico{color:var(--night)}
+.fd h2{font-size:22px;margin-bottom:10px}
+.fd p{margin:0 0 24px;color:var(--grey)}
+.fd .btn{min-width:150px}
+.fd-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.fd .fd-actions .btn{min-width:140px}
+@keyframes fd-in{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+
+/* Agrandissement des photos */
+.lightbox{border:0;border-radius:12px;padding:16px;width:min(92vw,900px);max-height:90vh}
+.lightbox::backdrop{background:rgba(11,31,58,.82)}
+.lightbox [hidden]{display:none}
+.lightbox img{display:block;max-width:100%;max-height:78vh;margin-inline:auto;border-radius:8px}
+.lightbox p{margin:24px 0 8px;text-align:center;color:var(--grey)}
+.lightbox-close{position:absolute;top:8px;right:8px;z-index:1;width:44px;height:44px;border:0;border-radius:50%;background:var(--night);color:var(--white);font-size:26px;line-height:1;cursor:pointer}
+
+/* Indicateur d'envoi */
+.spin{display:inline-block;width:16px;height:16px;margin-right:10px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;vertical-align:-3px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- 5.7 Bannière de cookies et bouton retour en haut ---------- */
+.cookie-banner{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:520px;background:var(--night);color:var(--white);padding:22px;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,.4);z-index:150;animation:rise .5s var(--ease)}
+.cookie-banner[hidden]{display:none}
+.cookie-banner h2{font-size:18px;color:var(--white);margin-bottom:8px}
+.cookie-banner p{font-size:15px;margin-bottom:16px;color:#DCE3EE}
+.cookie-banner a{color:var(--white);text-underline-offset:4px}
+.cookie-banner a:hover{color:var(--red-night)}
+.cookie-banner .btn-secondary{border-color:var(--white);color:var(--white)}
+.cookie-banner .btn-secondary:hover{background:var(--white);color:var(--night)}
+.cookie-actions{display:flex;gap:12px}
+.cookie-actions .btn{flex:1}
+@media (min-width:640px){.cookie-banner{left:24px;right:auto}}
+
+.to-top{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;border:0;background:var(--red-hover);color:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.25);opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s var(--ease),background-color .2s;z-index:90}
+.to-top.is-visible{opacity:1;transform:none}
+.to-top:hover{background:#A81726}
+.to-top[hidden]{display:none}
+
+
+/* =========================================================
+   06. EN-TÊTE ET NAVIGATION
+   ========================================================= */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:100;background:var(--night);color:var(--white);height:calc(var(--header-h) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);transition:height .3s var(--ease),box-shadow .3s}
+.site-header.is-small{--header-h:64px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+
+/* Logo et nom (utilisés aussi dans le pied de page) */
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
+.brand-mark{width:64px;height:64px;object-fit:contain;transition:width .3s var(--ease),height .3s var(--ease)}
+.is-small .brand-mark{width:44px;height:44px}
+.brand-name{font-weight:800;font-size:20px;letter-spacing:.02em}
+
+/* Menu */
+.main-nav ul{display:flex;align-items:center;gap:6px}
+.main-nav a{position:relative;display:block;padding:10px 14px;font-weight:600;font-size:15px;text-decoration:none;color:var(--white);transition:color .2s}
+.main-nav a:not(.nav-cta)::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--red-night);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.main-nav a:not(.nav-cta):hover,.main-nav a[aria-current="page"]{color:var(--red-night)}
+.main-nav a:not(.nav-cta):hover::after,.main-nav a[aria-current="page"]::after{transform:scaleX(1)}
+.nav-cta{margin-left:10px;background:var(--red-hover);border-radius:var(--radius);transition:background-color .2s,transform .25s var(--ease)}
+.nav-cta:hover{background:var(--white);color:var(--night)}
+
+/* Bouton hamburger (mobile) */
+.nav-toggle{display:none;width:48px;height:48px;border:0;background:transparent;cursor:pointer;position:relative;color:var(--white)}
+.nav-toggle .bar{position:absolute;left:12px;right:12px;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .2s,top .3s var(--ease)}
+.nav-toggle .bar:nth-child(1){top:16px}
+.nav-toggle .bar:nth-child(2){top:23px}
+.nav-toggle .bar:nth-child(3){top:30px}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1){top:23px;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3){top:23px;transform:rotate(-45deg)}
+
+@media (max-width:899px){
+  .nav-toggle{display:block}
+  .main-nav{position:fixed;inset:calc(var(--header-h) + env(safe-area-inset-top,0px)) 0 0 0;background:var(--night);padding:24px 20px 40px;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .3s,transform .3s var(--ease),visibility 0s .3s}
+  .main-nav.is-open{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .3s var(--ease)}
+  .main-nav ul{flex-direction:column;align-items:stretch;gap:0}
+  .main-nav a{padding:18px 4px;font-size:20px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .main-nav a:not(.nav-cta)::after{display:none}
+  .nav-cta{margin:24px 0 0;text-align:center;border-bottom:0!important;padding:16px}
+}
+body.nav-open{overflow:hidden}
+
+
+/* =========================================================
+   07. PIED DE PAGE
+   ========================================================= */
+.site-footer{background:var(--night);color:#DCE3EE;border-top:1px solid rgba(255,255,255,.14)}
+.footer-grid{display:grid;gap:36px;padding:56px 0 40px}
+.footer-brand p{margin:16px 0 0;max-width:22em;font-size:15px}
+.site-footer .brand-mark{width:56px;height:56px}
+.footer-title{font-size:16px;color:var(--white);margin-bottom:14px}
+.site-footer li{margin-bottom:8px;font-size:15px}
+.site-footer a,.site-footer .linklike{text-decoration:none;transition:color .2s}
+.site-footer a:hover,.site-footer .linklike:hover{color:var(--red-night)}
+.site-footer .linklike{text-decoration:underline}
+.contact-list li{color:#C3CEDF}
+
+.footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:18px 0 calc(18px + env(safe-area-inset-bottom,0px));font-size:14px}
+.footer-bottom-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px}
+.footer-bottom p{margin:0}
+
+@media (min-width:640px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.footer-grid{grid-template-columns:1.4fr .8fr 1fr 1fr;gap:48px}}
+
+
+/* =========================================================
+   08. GABARIT DES PAGES INTÉRIEURES
+   ========================================================= */
+.page-hero{background:var(--night);color:var(--white);padding:calc(var(--header-h) + 40px) 0 56px}
+.page-hero h1{max-width:18em}
+.page-lead{font-size:18px;line-height:1.7;max-width:36em;color:#DCE3EE;margin:18px 0 0}
+@media (min-width:900px){.page-hero{padding:calc(var(--header-h) + 64px) 0 80px}.page-lead{font-size:20px}}
+
+.split{display:grid;gap:24px}
+@media (min-width:900px){.split{grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}}
+.prose p{max-width:38em}
+.prose a.link,.muted a.link{white-space:nowrap}
+.mission-text{font-size:20px;line-height:1.6;font-weight:600;color:var(--night);margin:16px 0 0}
+@media (min-width:768px){.mission-text{font-size:24px}}
+
+
+/* =========================================================
+   09. PAGE ACCUEIL
+   ========================================================= */
+
+/* ---------- bandeau ---------- */
+.hero{background:var(--night);color:var(--white);padding:calc(var(--header-h) + 56px) 0 72px;overflow:hidden;position:relative}
+.hero-grid{display:grid;gap:40px;align-items:center}
+.hero-lead{font-size:18px;line-height:1.7;max-width:34em;color:#DCE3EE;margin:22px 0 32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+.hero-photo{max-width:540px;margin-inline:auto;width:100%}
+.hero-photo figure{position:relative;margin:0}
+.hero-photo figure::before{content:"";position:absolute;inset:18px -16px -18px 16px;border:3px solid var(--red-night);border-radius:28px;opacity:.55}
+.hero-photo img{position:relative;display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+@media (min-width:900px){
+  .hero{padding:calc(var(--header-h) + 88px) 0 112px}
+  .hero-grid{grid-template-columns:1fr 1fr;gap:64px}
+  .hero-lead{font-size:20px}
+  .hero-photo{max-width:none;margin:0}
+}
+
+/* ---------- qui sommes-nous ---------- */
+.ab{display:grid;gap:36px;align-items:start}
+.ab-head .sub{margin-top:12px;max-width:15em;line-height:1.3}
+.ab-lead{max-width:34em;font-size:20px;line-height:1.65;font-weight:600;color:var(--night)}
+.ab-points{display:grid;gap:12px;margin:26px 0 30px}
+.ab-points li{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:16px;background:var(--soft);font-weight:700;color:var(--night);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.ab-points li:hover{transform:translateX(6px);box-shadow:0 10px 24px rgba(11,31,58,.10)}
+.ab-ico{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;background:var(--white);color:var(--red-hover);font-size:20px}
+.ab-btn .icon{margin:0 0 0 10px;transition:transform .25s var(--ease)}
+.ab-btn:hover .icon{transform:translateX(4px)}
+@media (min-width:768px){.ab-lead{font-size:22px}}
+@media (min-width:900px){.ab{grid-template-columns:.85fr 1.15fr;gap:80px}}
+
+/* ---------- ce qui nous guide ---------- */
+.gd-head{max-width:46em;margin-bottom:40px}
+.gd-head .muted{margin-top:12px}
+.gd-cards{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.gd-card{position:relative;overflow:hidden;padding:34px 28px 30px;border-radius:22px;background:var(--white);border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,31,58,.05);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.gd-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--red-hover);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.gd-ico{display:grid;place-items:center;width:68px;height:68px;margin-bottom:20px;border-radius:50%;background:var(--soft);color:var(--red-hover);font-size:30px;transition:background-color .3s,color .3s,transform .3s var(--ease)}
+.gd-title{margin-bottom:10px;font-size:22px;color:var(--night)}
+.gd-card p{margin:0}
+.gd-card:hover{transform:translateY(-8px);box-shadow:0 22px 46px rgba(11,31,58,.16);border-color:var(--night)}
+.gd-card:hover::before{transform:scaleX(1)}
+.gd-card:hover .gd-ico{background:var(--night);color:var(--white);transform:rotate(-6deg) scale(1.06)}
+
+/* ---------- chiffres ---------- */
+.stats{background:var(--night);color:var(--white);padding:56px 0}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px 20px}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat-num{font-size:40px;font-weight:800;line-height:1;color:var(--white)}
+.stat-label{color:#C3CEDF;font-size:15px}
+@media (min-width:900px){.stats-grid{grid-template-columns:repeat(4,1fr)}.stat-num{font-size:52px}}
+
+
+/* =========================================================
+   10. PAGE À PROPOS
+   10.1 Éléments communs
+   10.2 Histoire
+   10.3 Fondateur
+   10.4 Mission
+   10.5 Valeurs
+   10.6 Statuts
+   10.7 L'association en bref
+   10.8 Bureau
+   10.9 Agrandissement d'image
+   ========================================================= */
+
+/* ---------- 10.1 Éléments communs ---------- */
+.ap-i{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ap-head{margin-bottom:36px;max-width:46em}
+.ap-head .muted{margin-top:10px}
+.ap-h3{font-size:26px;color:var(--night)}
+.ap-h3-sm{margin:0 0 22px;font-size:24px;font-weight:700;line-height:1.2;color:var(--night)}
+.ap-h3-sm::after{content:"";display:block;width:56px;height:4px;margin-top:14px;border-radius:2px;background:var(--red-hover)}
+.ap-ico{display:grid;place-items:center;flex:none;width:60px;height:60px;border-radius:50%;background:var(--soft);color:var(--red-hover);font-size:28px;transition:background-color .3s,color .3s,transform .3s var(--ease)}
+.ap-ico-sm{width:44px;height:44px;font-size:21px}
+@media (min-width:768px){.ap-h3{font-size:30px}}
+
+/* Portraits (fondateur et bureau) : silhouette tant que la photo n'est pas chargée */
+.ap-photo{position:relative;margin:0;overflow:hidden;display:grid;place-items:center;background:#E9E6E0;color:#B9B5AC}
+.ap-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ap-sil{width:46%;height:auto}
+
+
+/* ---------- 10.2 Histoire : texte en deux colonnes ---------- */
+.ap-cols{columns:2 22em;column-gap:56px;font-size:17px;line-height:1.95;color:#2F3542}
+.ap-cols p{margin:0 0 1.1em}
+
+
+/* ---------- 10.3 Fondateur ---------- */
+.ap-founder{display:grid;gap:30px;align-items:start}
+.ap-portrait{width:220px;max-width:100%;aspect-ratio:4/5;border-radius:6px}
+.ap-role{margin:0 0 6px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red-hover)}
+.ap-name{margin:0 0 12px;font-size:24px;font-weight:700;color:var(--night)}
+.ap-quote{margin:24px 0 0;padding:4px 0 4px 20px;border-left:3px solid var(--red);font-style:italic;max-width:34em}
+.ap-quote p{margin:0}
+@media (min-width:760px){.ap-founder{grid-template-columns:220px 1fr;gap:56px}}
+
+
+/* ---------- 10.4 Mission ---------- */
+.ap-mission{display:grid;gap:18px;margin-bottom:56px;padding-bottom:56px;border-bottom:1px solid var(--line)}
+.ap-mission-text{margin:0;max-width:32em;font-size:20px;line-height:1.7;font-weight:600;color:var(--night)}
+@media (min-width:768px){.ap-mission-text{font-size:22px}}
+@media (min-width:900px){.ap-mission{grid-template-columns:.8fr 1.2fr;gap:72px;align-items:start}}
+
+
+/* ---------- 10.5 Valeurs : le texte apparaît au survol ---------- */
+.ap-values{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.ap-value{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;min-height:290px;padding:30px 26px;border-radius:20px;background:var(--white);border:1px solid var(--line);transition:box-shadow .3s var(--ease),border-color .3s}
+.ap-value:hover,.ap-value:focus-visible{box-shadow:0 20px 44px rgba(11,31,58,.2);border-color:var(--night)}
+.ap-value .ap-ico{margin-bottom:18px}
+.ap-value:hover .ap-ico{transform:scale(1.08)}
+.ap-value-num{position:absolute;top:18px;right:24px;font-size:46px;font-weight:800;line-height:1;color:var(--soft)}
+.ap-value-title{font-size:21px;color:var(--night)}
+.ap-value-tag{margin:0;color:var(--grey)}
+
+/* Face cachée de la carte */
+.ap-value-more{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:30px 26px;background:var(--night);color:var(--white);opacity:0;transform:translateY(28px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.ap-value-more p{margin:0}
+.ap-value-more .ap-ico{background:rgba(255,255,255,.12);color:var(--red-night)}
+.ap-value:hover .ap-value-more,.ap-value:focus-visible .ap-value-more{opacity:1;transform:none}
+
+/* Écrans tactiles : pas de survol, le texte reste visible */
+@media (hover:none){
+  .ap-value{min-height:0}
+  .ap-value-more{position:static;opacity:1;transform:none;background:none;color:var(--ink);padding:10px 0 0}
+  .ap-value-more .ap-ico{display:none}
+}
+
+
+/* ---------- 10.6 Statuts : deux colonnes séparées par un filet ---------- */
+.ap-statuts{display:grid;gap:40px}
+.ap-statuts-intro h2::after{content:"";display:block;width:56px;height:4px;margin-top:14px;border-radius:2px;background:var(--red-hover)}
+.ap-statuts-intro .sub{margin:24px 0 0;padding:10px 18px;border-left:4px solid var(--red-hover);border-radius:0 var(--radius) var(--radius) 0;background:var(--white);font-size:17px;line-height:1.35;color:var(--night)}
+.ap-statuts-intro p{margin:20px 0 0;max-width:32em;color:#2F3542}
+.ap-statuts-goals{padding-top:40px;border-top:1px solid #C9C3B8}
+.ap-goals{border-top:1px solid var(--line)}
+.ap-goals li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.ap-goals .n{font-size:15px;font-weight:800;letter-spacing:.04em;color:var(--red-hover)}
+.ap-goals p{margin:0;font-weight:600;color:var(--night)}
+@media (min-width:900px){
+  .ap-statuts{grid-template-columns:.85fr 1.15fr;gap:0;align-items:stretch}
+  .ap-statuts-intro{padding-right:64px}
+  .ap-statuts-goals{padding:0 0 0 64px;border-top:0;border-left:1px solid #C9C3B8}
+}
+
+
+/* ---------- 10.7 L'association en bref ---------- */
+.ap-idcols{display:grid;gap:0 72px}
+.ap-id{margin:0;border-bottom:1px solid var(--line)}
+.ap-id>div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.ap-id dt{padding-top:3px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.ap-id dd{margin:0;font-weight:600;color:var(--night)}
+.ap-id dd.todo{font-weight:400}
+@media (min-width:900px){.ap-idcols{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.ap-id>div{grid-template-columns:1fr;gap:2px}}
+
+
+/* ---------- 10.8 Bureau : survol des portraits ---------- */
+.ap-team{display:flex;flex-wrap:wrap;gap:28px 24px}
+.ap-member{width:calc(50% - 12px);cursor:pointer}
+.ap-member .ap-photo{aspect-ratio:4/5;border-radius:6px;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.ap-member .ap-photo img{transition:transform .6s var(--ease)}
+
+/* Voile bleu nuit et filet rouge qui apparaissent au survol */
+.ap-member .ap-photo::before{content:"";position:absolute;left:0;right:0;bottom:0;z-index:2;height:4px;background:var(--red-hover);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+
+.ap-member:hover .ap-photo{transform:translateY(-6px)}
+.ap-member:hover .ap-photo img{transform:scale(1.07)}
+.ap-member:hover .ap-photo::after{opacity:1}
+.ap-member:hover .ap-photo::before{transform:scaleX(1)}
+.ap-member-name{margin:14px 0 2px;font-size:16px;color:var(--night);transition:color .25s}
+.ap-member:hover .ap-member-name{color:var(--red-hover)}
+.ap-member-role{margin:0;font-size:14px;font-weight:600;color:var(--red-hover)}
+@media (min-width:760px){.ap-member{width:190px}}
+
+
+/* ---------- 10.9 Agrandissement d'image ---------- */
+.ap-lightbox{border:0;border-radius:12px;padding:14px;width:min(94vw,960px);max-height:92vh;overflow:auto}
+.ap-lightbox::backdrop{background:rgba(11,31,58,.85)}
+.ap-lightbox img{display:block;max-width:100%;max-height:82vh;margin-inline:auto;border-radius:6px}
+.ap-lightbox-close{position:absolute;top:8px;right:8px;z-index:1;width:44px;height:44px;border:0;border-radius:50%;background:var(--night);color:var(--white);font-size:26px;line-height:1;cursor:pointer}
+
+
+/* =========================================================
+   11. PAGE ACTIVITÉS
+   11.1 Bandeau
+   11.2 Ce que nous faisons
+   11.3 L'école des Bororos
+   11.4 Prochains rendez-vous
+   11.5 Déjà réalisé (filtre par rubrique)
+
+   Images utilisées :
+   img/communaute.jpg (bandeau), img/photopreuve1.png à
+   photopreuve3.png (école), img/microprojet.jpg, img/journee.jpg
+   ========================================================= */
+
+/* ---------- 11.1 Bandeau : la photo apparaît sous le bleu en 2 secondes ---------- */
+.act-hero{position:relative;isolation:isolate;overflow:hidden;display:grid;align-items:end;min-height:clamp(300px,23vw,400px);padding:calc(var(--header-h) + 32px) 0 52px;background:var(--night)}
+.act-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url("../img/communaute.jpg") 50% 40% / cover no-repeat;opacity:0;transform:scale(1.08);animation:actPhoto 2s var(--ease) .1s forwards;will-change:opacity,transform}
+
+/* Voile bleu nuit, plus dense à gauche pour garder le texte lisible */
+.act-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,31,58,.94) 0%,rgba(11,31,58,.78) 42%,rgba(11,31,58,.34) 100%)}
+.act-hero h1{max-width:none}
+@keyframes actPhoto{to{opacity:1;transform:none}}
+@media (max-width:700px){
+  .act-hero{min-height:260px;padding-bottom:40px}
+  .act-hero::after{background:linear-gradient(rgba(11,31,58,.84),rgba(11,31,58,.7))}
+}
+
+
+/* ---------- 11.2 Ce que nous faisons : trois colonnes séparées par un filet ---------- */
+.act-i{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.act-statement{margin:0 0 18px;max-width:30em;font-size:18px;line-height:1.65;font-weight:400;color:#4A5160}
+.act-lead{max-width:40em}
+/* Titres de section : trait rouge, puis phrase d'accroche en texte léger */
+.act-lead h2::after,.act-school-text h2::after{content:"";display:block;width:56px;height:4px;margin-top:14px;border-radius:2px;background:var(--red-hover)}
+.act-lead .act-statement,.act-school-text .act-statement{margin-top:22px}
+.act-pillars{display:grid;margin-top:34px;border-top:1px solid var(--line)}
+.act-pillar{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:24px 0;border-bottom:1px solid var(--line)}
+.act-pillar p{margin:0;max-width:30em}
+.act-pillar .sub{margin-bottom:6px;transition:color .25s}
+.act-pillar-ico{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--soft);color:var(--red-hover);font-size:24px;transition:background-color .3s,color .3s,transform .3s var(--ease)}
+.act-pillar:hover .act-pillar-ico{background:var(--night);color:var(--white);transform:rotate(-6deg) scale(1.1)}
+.act-pillar:hover .sub{color:var(--red-hover)}
+@media (min-width:768px){.act-statement{font-size:20px}}
+@media (min-width:900px){
+  .act-pillars{grid-template-columns:repeat(3,1fr);border-top:0;margin-top:44px}
+  .act-pillar{display:block;padding:6px 36px 6px 0;border-bottom:0}
+  .act-pillar+.act-pillar{padding-left:36px;border-left:1px solid var(--line)}
+  .act-pillar-ico{margin-bottom:18px}
+}
+
+
+/* ---------- 11.3 L'école des Bororos : texte et mosaïque de trois photos ---------- */
+.act-school-grid{display:grid;gap:40px;align-items:center}
+.act-school-text p{max-width:36em}
+.act-actions{display:flex;flex-wrap:wrap;gap:12px}
+
+.act-mosaic{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.act-ph{position:relative;margin:0;overflow:hidden;border-radius:var(--radius);aspect-ratio:1;background:linear-gradient(135deg,#1F4170,#0B1F3A);box-shadow:0 6px 18px rgba(11,31,58,.10);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.act-ph-main{grid-column:1 / -1;aspect-ratio:4/3}
+.act-ph img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 28%;transition:transform .5s var(--ease)}
+.act-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,31,58,.55),rgba(11,31,58,0) 60%);opacity:0;transition:opacity .35s var(--ease)}
+.act-ph:hover{transform:translateY(-5px);box-shadow:0 20px 38px rgba(11,31,58,.28)}
+.act-ph:hover img{transform:scale(1.07)}
+.act-ph:hover::after{opacity:1}
+@media (min-width:900px){
+  .act-school-grid{grid-template-columns:1fr 1.05fr;gap:72px}
+  .act-mosaic{order:-1;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:5/4}
+  .act-ph,.act-ph-main{aspect-ratio:auto}
+  .act-ph-main{grid-column:auto;grid-row:1 / span 2}
+}
+
+
+/* ---------- 11.4 Prochains rendez-vous ---------- */
+.event{display:grid;grid-template-columns:72px 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.event time{font-weight:800;color:var(--night);text-align:center;line-height:1.2}
+
+
+/* ---------- 11.5 Déjà réalisé : filtre par rubrique ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{min-height:44px;padding:0 20px;border:2px solid var(--night);border-radius:99px;background:transparent;color:var(--night);font-family:var(--font);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .2s,color .2s}
+.chip:hover,.chip.is-active{background:var(--night);color:var(--white)}
+.filter-empty{color:var(--grey)}
+.filter-empty[hidden]{display:none}
+
+/* Les cartes réapparaissent en douceur à chaque changement de filtre */
+.news.act-pop{animation:actPop .35s var(--ease)}
+@keyframes actPop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* Cartes d'activités : soulèvement, ombre, zoom de la photo et filet rouge */
+.news-grid-3 .news::before{content:"";position:absolute;left:0;right:0;bottom:0;z-index:3;height:4px;background:var(--red-hover);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.news-grid-3 .news:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(11,31,58,.2);border-color:var(--night)}
+.news-grid-3 .news:hover::before{transform:scaleX(1)}
+.news-grid-3 .news:hover .news-media img{transform:scale(1.08)}
+.news-grid-3 .news .tag{transition:background-color .25s}
+.news-grid-3 .news:hover .tag{background:var(--red-hover)}
+
+
+/* =========================================================
+   12. PAGE CONTACT
+   12.1 Bandeau
+   12.2 Coordonnées
+   12.3 Formulaire (réutilisé par la page S'impliquer)
+   12.4 Accès et plan
+
+   Images du bandeau (dossier img/) :
+   contact-hero-xl.webp (écrans de plus de 1920 px),
+   contact-hero.webp (ordinateurs),
+   contact-hero-md.webp (tablettes),
+   contact-hero-sm.webp (téléphones).
+   ========================================================= */
+
+/* ---------- 12.1 Bandeau ---------- */
+.contact-hero{
+  position:relative;
+  display:grid;align-items:end;
+  min-height:clamp(300px,23vw,400px);
+  padding:calc(var(--header-h) + 32px) 0 52px;
+  color:var(--white);
+  background:
+    linear-gradient(90deg,rgba(11,31,58,.93) 0%,rgba(11,31,58,.72) 45%,rgba(11,31,58,.30) 100%),
+    url("../img/contact-hero.webp") 70% 45% / cover no-repeat,
+    var(--night);
+}
+.contact-hero h1{max-width:none}
+
+@media (min-width:1921px){
+  .contact-hero{
+    background:
+      linear-gradient(90deg,rgba(11,31,58,.93) 0%,rgba(11,31,58,.72) 45%,rgba(11,31,58,.30) 100%),
+      url("../img/contact-hero-xl.webp") 70% 45% / cover no-repeat,
+      var(--night);
+  }
+}
+@media (max-width:1100px){
+  .contact-hero{
+    background:
+      linear-gradient(90deg,rgba(11,31,58,.92) 0%,rgba(11,31,58,.68) 55%,rgba(11,31,58,.40) 100%),
+      url("../img/contact-hero-md.webp") 65% center / cover no-repeat,
+      var(--night);
+  }
+}
+@media (max-width:700px){
+  .contact-hero{
+    min-height:260px;
+    padding-bottom:40px;
+    background:
+      linear-gradient(rgba(11,31,58,.80),rgba(11,31,58,.80)),
+      url("../img/contact-hero-sm.webp") 62% center / cover no-repeat,
+      var(--night);
+  }
+}
+
+
+/* ---------- 12.2 Coordonnées ---------- */
+.ct-section{background:var(--soft)}
+.ct-grid{display:grid;gap:56px}
+.ct-info h2{font-size:28px;line-height:1.25;margin-bottom:22px}
+.ct-intro{max-width:30em;margin-bottom:32px}
+.ct-list{margin:0;padding:0}
+.ct-item{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;padding:24px 0;border-top:1px solid var(--line)}
+.ct-item:last-child{border-bottom:1px solid var(--line)}
+.ct-icon{width:30px;height:30px;color:var(--red);margin-top:2px}
+.ct-value{margin:0 0 4px;font-size:18px;font-weight:700;color:var(--night);word-break:break-word}
+.ct-value a{text-decoration:none;transition:color .2s}
+.ct-value a:hover{color:var(--red-hover)}
+.ct-desc{margin:0;font-size:15px;color:var(--grey)}
+.ct-actions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+
+/* Boutons d'action (aussi utilisés dans « Accès et plan ») */
+.ct-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--radius);border:2px solid var(--night);color:var(--night);font-size:14px;font-weight:600;text-decoration:none;transition:background-color .2s,color .2s,border-color .2s,transform .25s var(--ease)}
+.ct-btn:hover{background:var(--night);color:var(--white);transform:translateY(-2px)}
+.ct-btn-wa,.ct-btn-main{background:var(--red-hover);border-color:var(--red-hover);color:var(--white)}
+.ct-btn-wa:hover,.ct-btn-main:hover{background:#A81726;border-color:#A81726;color:var(--white)}
+
+@media (min-width:768px){.ct-info h2{font-size:34px}}
+@media (min-width:900px){.ct-grid{grid-template-columns:1fr 1fr;gap:96px;align-items:start}}
+
+
+/* ---------- 12.3 Formulaire ---------- */
+.ct-form-title{font-size:24px;margin-bottom:6px}
+.ct-required{font-size:14px;color:var(--grey);margin-bottom:24px}
+.ct-form{max-width:none;gap:18px}
+.ct-form .field label{font-size:13px;font-weight:600;color:var(--grey);margin-bottom:6px}
+.ct-form .field.check label{font-size:15px;color:var(--ink)}
+.ct-form .field input[type=text],.ct-form .field select,.ct-form .field textarea{background:var(--white);border:1px solid #C9C6BF;border-radius:4px;min-height:52px;padding:12px 14px;transition:border-color .2s,box-shadow .2s}
+.ct-form .field textarea{min-height:150px}
+.ct-form .field input:hover,.ct-form .field select:hover,.ct-form .field textarea:hover{border-color:var(--night)}
+.ct-form .field input:focus-visible,.ct-form .field select:focus-visible,.ct-form .field textarea:focus-visible{outline:none;border-color:var(--night);box-shadow:0 0 0 3px rgba(11,31,58,.2)}
+.ct-form .field [aria-invalid="true"]{border-color:var(--red-hover);border-width:2px}
+
+/* Bouton d'envoi */
+.ct-send{justify-self:start;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 30px;border:0;border-radius:4px;background:var(--red-hover);color:var(--white);font:700 14px/1 var(--font);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background-color .2s,transform .25s var(--ease),box-shadow .25s var(--ease)}
+.ct-send:hover{background:#A81726;transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.2)}
+.ct-send:focus-visible{outline:3px solid var(--night);outline-offset:3px}
+.ct-send[disabled]{opacity:.65;cursor:not-allowed;transform:none;box-shadow:none}
+.ct-send.is-sending{cursor:progress}
+
+
+/* ---------- 12.4 Accès et plan ---------- */
+.access-head{max-width:40em;margin-bottom:44px}
+.access-head h2{margin-bottom:12px}
+.access-lead{margin:0;color:var(--grey)}
+.access-grid{display:grid;gap:44px}
+
+/* Itinéraire en quatre étapes */
+.route{margin:0 0 28px;padding:0;list-style:none}
+.route li{position:relative;display:grid;grid-template-columns:48px 1fr;gap:18px;padding-bottom:26px}
+.route li:last-child{padding-bottom:0}
+.route li:not(:last-child)::before{content:"";position:absolute;left:23px;top:48px;bottom:2px;width:2px;background:var(--line)}
+.route-ico{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--night);color:var(--white);font-size:19px}
+.route-ico-end{background:var(--red-hover)}
+.route-title{margin:2px 0 2px;font-weight:700;font-size:17px;color:var(--night)}
+.route li p:last-child{margin:0;font-size:15px;color:var(--grey);max-width:32em}
+.access-actions{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 14px}
+.access-note{margin:0;font-size:13px;color:var(--grey);max-width:34em}
+
+/* Plan dessiné */
+.access-plan{margin:0}
+.plan-frame{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:hidden;box-shadow:0 10px 30px rgba(11,31,58,.08);transition:box-shadow .3s var(--ease)}
+.plan-frame:hover{box-shadow:0 16px 38px rgba(11,31,58,.16)}
+.plan-frame a{display:block;color:inherit}
+.plan-frame img{display:block;width:100%;height:auto;max-width:100%}
+.plan-zoom{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:99px;background:var(--night);color:var(--white);font-size:14px;font-weight:600;box-shadow:0 6px 16px rgba(0,0,0,.25);transition:background-color .2s,transform .25s var(--ease)}
+.plan-frame a:hover .plan-zoom,.plan-frame a:focus-visible .plan-zoom{background:var(--red-hover);transform:translateY(-2px)}
+.access-plan figcaption{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:14px;color:var(--grey)}
+.access-plan figcaption .icon{margin-top:3px;color:var(--red)}
+
+@media (min-width:960px){.access-grid{grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}}
+
+
+/* =========================================================
+   13. PAGE FAQ
+   13.1 Icônes et bandeau
+   13.2 Menu des thèmes
+   13.3 Un thème (titre et compteur)
+   13.4 Accordéon des questions
+
+   Image du bandeau : img/faq-hero.webp (1920 x 420 px).
+   L'illustration est à droite, le texte à gauche.
+   ========================================================= */
+
+/* ---------- 13.1 Icônes et bandeau ---------- */
+.fq-i{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fq-hero{
+  position:relative;
+  padding:calc(var(--header-h) + 28px) 0 40px;
+  color:var(--white);
+  background:
+    linear-gradient(90deg,rgba(11,31,58,.95) 0%,rgba(11,31,58,.80) 48%,rgba(11,31,58,.38) 100%),
+    url("../img/faq-hero.webp") 80% center / cover no-repeat,
+    var(--night);
+}
+.fq-hero :focus-visible{outline-color:var(--white)}
+.fq-hero .breadcrumb{margin-bottom:16px}
+.fq-hero h1{max-width:none;font-size:clamp(30px,4.6vw,50px);line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
+@media (min-width:900px){.fq-hero{padding:calc(var(--header-h) + 40px) 0 52px}}
+
+
+/* ---------- 13.2 Menu des thèmes ---------- */
+.fq-layout{display:grid;gap:32px}
+.fq-nav ul{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px}
+.fq-nav a{display:flex;align-items:center;gap:12px;white-space:nowrap;padding:12px 16px;border-radius:14px;background:var(--white);border:1px solid var(--line);font-weight:700;color:var(--night);text-decoration:none;transition:background-color .25s,color .25s,border-color .25s,transform .25s var(--ease)}
+.fq-nav a span{flex:1}
+.fq-nav a small{display:grid;place-items:center;min-width:24px;height:24px;border-radius:99px;background:var(--soft);font-size:12px;font-weight:700}
+.fq-nav-ico{font-size:20px;color:var(--red-hover)}
+.fq-nav a:hover,.fq-nav a[aria-current="true"]{background:var(--night);border-color:var(--night);color:var(--white)}
+.fq-nav a:hover .fq-nav-ico,.fq-nav a[aria-current="true"] .fq-nav-ico{color:var(--red-night)}
+.fq-nav a:hover small,.fq-nav a[aria-current="true"] small{background:rgba(255,255,255,.16);color:var(--white)}
+@media (min-width:960px){
+  .fq-layout{grid-template-columns:250px 1fr;gap:64px;align-items:start}
+  .fq-nav{position:sticky;top:calc(var(--header-h) + 28px)}
+  .fq-nav ul{flex-direction:column;overflow:visible;padding:0}
+  .fq-nav a:hover{transform:translateX(4px)}
+}
+
+
+/* ---------- 13.3 Un thème (titre et compteur) ---------- */
+.fq-group{margin-bottom:56px;scroll-margin-top:calc(var(--header-h) + 24px)}
+.fq-group[hidden]{display:none}
+.fq-head{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.fq-badge{display:grid;place-items:center;flex:none;width:64px;height:64px;border-radius:18px;background:var(--night);color:var(--red-night);font-size:30px;box-shadow:0 12px 26px rgba(11,31,58,.22);transform:rotate(-4deg)}
+.fq-head h2{font-size:26px;line-height:1.1}
+.fq-sub{margin:4px 0 0;font-size:15px;color:var(--grey)}
+.fq-count{margin-left:auto;align-self:flex-start;padding:4px 14px;border-radius:99px;background:var(--white);border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--night);white-space:nowrap}
+@media (min-width:768px){.fq-head h2{font-size:32px}}
+@media (max-width:640px){.fq-count{display:none}}
+
+
+/* ---------- 13.4 Accordéon des questions ---------- */
+.fq-card{background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(11,31,58,.06)}
+.fq-item{border-top:1px solid var(--line);transition:background-color .25s}
+.fq-item:first-child{border-top:0}
+.fq-item[hidden]{display:none}
+.fq-item[open]{background:#FBF9F6;box-shadow:inset 4px 0 0 var(--red-hover)}
+.fq-sum{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:64px;padding:16px 22px;list-style:none;cursor:pointer}
+.fq-sum::-webkit-details-marker{display:none}
+.fq-q{margin:0;font-size:17px;line-height:1.4;font-weight:700;color:var(--night);transition:color .2s}
+.fq-sum:hover .fq-q,.fq-item[open] .fq-q{color:var(--red-hover)}
+.fq-ico{position:relative;flex:none;width:36px;height:36px;border-radius:50%;background:var(--soft);color:var(--night);transition:background-color .25s,color .25s,transform .3s var(--ease)}
+.fq-ico::before,.fq-ico::after{content:"";position:absolute;left:11px;top:17px;width:14px;height:2px;background:currentColor;transition:transform .25s var(--ease)}
+.fq-ico::after{transform:rotate(90deg)}
+.fq-item[open] .fq-ico{background:var(--night);color:var(--white);transform:rotate(180deg)}
+.fq-item[open] .fq-ico::after{transform:rotate(0)}
+.fq-panel{padding:0 22px 24px;max-width:46em}
+.fq-panel p{margin:0}
+.fq-item[open] .fq-panel{animation:fqIn .35s var(--ease)}
+@keyframes fqIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+
+/* =========================================================
+   14. PAGE S'IMPLIQUER
+   Remplace toute l'ancienne section 14 de style.css.
+   Plus de formulaire : chaque voie mène à une action directe.
+   ========================================================= */
+
+/* ---------- bandeau ---------- */
+.sp-hero{
+  position:relative;
+  padding:calc(var(--header-h) + 28px) 0 44px;
+  color:var(--white);
+  background:
+    linear-gradient(90deg,rgba(11,31,58,.95) 0%,rgba(11,31,58,.72) 50%,rgba(11,31,58,.28) 100%),
+    url("../img/impliquer-hero.webp") 78% center / cover no-repeat,
+    var(--night);
+}
+.sp-hero :focus-visible{outline-color:var(--white)}
+.sp-hero .breadcrumb{margin-bottom:16px}
+.sp-hero h1{max-width:none;margin-bottom:12px;font-size:clamp(30px,4.8vw,52px);line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
+.sp-lead{max-width:34em;margin:0;font-size:17px;line-height:1.6;color:#E6ECF5}
+@media (min-width:900px){
+  .sp-hero{padding:calc(var(--header-h) + 44px) 0 60px}
+  .sp-lead{font-size:19px}
+}
+
+/* ---------- éléments communs ---------- */
+.sp-head{margin-bottom:36px;max-width:46em}
+.sp-ico{display:grid;place-items:center;flex:none;width:64px;height:64px;border-radius:50%;background:var(--soft);color:var(--red-hover);font-size:28px;transition:background-color .3s,color .3s,transform .3s var(--ease)}
+.sp-ico-sm{width:50px;height:50px;font-size:22px}
+.section-soft .sp-ico{background:var(--white)}
+.sp-split{display:grid;gap:36px;align-items:start}
+.sp-sub{margin:44px 0 18px;font-size:20px;color:var(--night)}
+@media (min-width:960px){.sp-split{grid-template-columns:.7fr 1.3fr;gap:72px}}
+
+/* ---------- quatre voies ---------- */
+.sp-ways{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.sp-way{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;padding:30px 26px 26px;border-radius:20px;background:var(--white);border:1px solid var(--line);box-shadow:0 10px 30px rgba(11,31,58,.05);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.sp-way::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--red-hover);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.sp-way-title{font-size:20px;line-height:1.25;color:var(--night)}
+.sp-way p{margin:0;flex:1}
+.sp-link{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--night);text-decoration:none;transition:color .2s}
+.sp-link .icon{transition:transform .25s var(--ease)}
+.sp-way:hover{transform:translateY(-6px);border-color:var(--night);box-shadow:0 18px 40px rgba(11,31,58,.16)}
+.sp-way:hover::before{transform:scaleX(1)}
+.sp-way:hover .sp-ico{background:var(--night);color:var(--white);transform:rotate(-6deg) scale(1.06)}
+.sp-way:hover .sp-link,.sp-link:hover{color:var(--red-hover)}
+.sp-way:hover .sp-link .icon{transform:translateX(5px)}
+
+/* ---------- adhésion en pratique ---------- */
+.sp-tiles{display:grid;gap:16px}
+.sp-tile{display:flex;gap:18px;align-items:flex-start;padding:22px 24px;border-radius:18px;background:var(--white);border:1px solid var(--line);transition:box-shadow .3s var(--ease),border-color .3s}
+.sp-tile-title{font-size:18px;color:var(--night);margin-bottom:4px}
+.sp-tile p{margin:0}
+.sp-pays{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.sp-pay{display:flex;gap:14px;align-items:center;padding:18px;border-radius:16px;background:var(--white);border:1px solid var(--line);transition:box-shadow .3s var(--ease),border-color .3s}
+.sp-pay-title{font-size:16px;color:var(--night);margin-bottom:2px}
+.sp-pay p{margin:0;font-size:14px;color:var(--grey)}
+.sp-tile:hover,.sp-pay:hover{box-shadow:0 16px 36px rgba(11,31,58,.12);border-color:var(--night)}
+.sp-tile:hover .sp-ico,.sp-pay:hover .sp-ico{background:var(--night);color:var(--white)}
+/* =========================================================
+   15. PAGES LÉGALES
+   Cookies, mentions légales, confidentialité.
+   Texte en une colonne, sans élément décoratif.
+   ========================================================= */
+.lp-top{padding:calc(var(--header-h) + 28px) 0 36px}
+.lp-top .breadcrumb{margin-bottom:14px}
+.lp-top h1{max-width:none;font-size:clamp(28px,4vw,42px)}
+.lp-date{margin:12px 0 0;font-size:14px;color:#C3CEDF}
+@media (min-width:900px){.lp-top{padding:calc(var(--header-h) + 40px) 0 44px}}
+
+.lp-doc{max-width:780px}
+.lp-doc p,.lp-doc li{line-height:1.75}
+
+/* sommaire */
+.lp-toc{margin:0 0 8px;padding:20px 24px;border-radius:var(--radius);background:var(--soft)}
+.lp-toc-t{margin:0 0 8px;font-weight:700;color:var(--night)}
+.lp-toc ol{margin:0;padding-left:22px;list-style:decimal}
+.lp-toc li{padding:2px 0;font-size:15px}
+.lp-toc a{color:var(--night);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}
+.lp-toc a:hover{color:var(--red-hover);text-decoration-color:var(--red-hover)}
+
+/* sections */
+.lp-sec{scroll-margin-top:calc(var(--header-h) + 20px)}
+.lp-sec h2{margin:44px 0 14px;font-size:24px;line-height:1.25}
+.lp-list{margin:0 0 1em;padding-left:22px;list-style:disc}
+.lp-list li{margin-bottom:6px}
+
+/* identité de l'éditeur et définitions */
+.lp-dl{margin:16px 0}
+.lp-dl>div{display:grid;gap:2px;padding:12px 0;border-top:1px solid var(--line)}
+.lp-dl>div:last-child{border-bottom:1px solid var(--line)}
+.lp-dl dt{font-weight:700;color:var(--night)}
+.lp-dl dd{margin:0}
+@media (min-width:640px){.lp-dl>div{grid-template-columns:210px 1fr;gap:24px}}
+
+/* tableaux */
+.lp-table-wrap{margin:16px 0;overflow-x:auto}
+.lp-table{width:100%;min-width:560px;border-collapse:collapse;font-size:15px}
+.lp-table th,.lp-table td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.lp-table thead th{background:var(--soft);color:var(--night);font-size:14px}
+.lp-table td:first-child{font-weight:700;color:var(--night)}
+
+
+/* =========================================================
+   16. ANIMATIONS
+   ========================================================= */
+
+/* ---------- entrée du bandeau : texte puis photo ---------- */
+.js .hero-line{opacity:0;transform:translateY(22px);animation:rise .7s var(--ease) forwards}
+.js .hero-line:nth-child(2){animation-delay:.12s}
+.js .hero-line:nth-child(3){animation-delay:.24s}
+.js .page-hero .hero-line:nth-of-type(1){animation-delay:.05s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- apparition au défilement, pilotée par js/reveal.js ---------- */
+.js .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .reveal.is-visible{opacity:1;transform:none}
+
+/* ---------- apparition au défilement, 100 % CSS ----------
+   Les blocs sont toujours visibles par défaut. Seuls les navigateurs qui savent animer
+   selon le défilement (Chrome, Edge, Safari récents) jouent l'apparition. */
+@supports (animation-timeline: view()){
+  .rise-in>*,.sp-rise>*,.ap-stagger>*{animation:scrollRise linear backwards;animation-timeline:view();animation-range:entry 0% entry 42%}
+  :is(.rise-in,.sp-rise,.ap-stagger)>*:nth-child(2){animation-range:entry 6% entry 48%}
+  :is(.rise-in,.sp-rise,.ap-stagger)>*:nth-child(3){animation-range:entry 12% entry 54%}
+  :is(.rise-in,.sp-rise,.ap-stagger)>*:nth-child(4){animation-range:entry 18% entry 60%}
+}
+@keyframes scrollRise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+/* ---------- apparition en cascade, pilotée par js/impliquer.js ----------
+   Les blocs ne sont masqués que si le script a démarré (il ajoute .stagger-on sur <html>). */
+.stagger-on .sp-stagger>*{opacity:0;transform:translateY(26px);transition:opacity .65s var(--ease),transform .65s var(--ease),box-shadow .3s var(--ease),border-color .3s;transition-delay:calc(var(--i,0) * 100ms)}
+.stagger-on .sp-stagger.is-in>*{opacity:1;transform:none}
+.stagger-on .sp-stagger.is-in>.sp-way:hover,.stagger-on .sp-stagger.is-in>.sp-pay:hover,.stagger-on .sp-stagger.is-in>.sp-tile:hover{transform:translateY(-6px);transition-delay:0s}
+
+
+/* =========================================================
+   17. MOUVEMENT RÉDUIT
+   Si le visiteur a désactivé les animations dans son système,
+   tout apparaît immédiatement.
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .hero-line,.js .reveal{opacity:1;transform:none}
+  .rise-in>*,.sp-rise>*,.ap-stagger>*{animation:none!important}
+  .stagger-on .sp-stagger>*{opacity:1;transform:none}
+}
